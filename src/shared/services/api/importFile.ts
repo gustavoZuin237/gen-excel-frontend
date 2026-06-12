@@ -3,8 +3,6 @@ import { VITE_API_URL } from "./index";
 export async function importSpreadsheet(file: File) {
   const formData = new FormData();
 
-  console.log(VITE_API_URL);
-
   formData.append("file", file);
 
   const response = await fetch(`${VITE_API_URL}/spreadsheets/import`, {

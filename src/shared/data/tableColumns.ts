@@ -61,8 +61,8 @@ export const columns: ColumnDef<NormalizedRow>[] = [
     },
   },
   {
-    accessorKey: "dataTermino",
-    header: "Data de Término",
+    accessorKey: "dataVencimento",
+    header: "Data de Término/Vencimento",
     cell: ({ getValue }) => {
       const value = getValue<Date>();
 
@@ -72,15 +72,6 @@ export const columns: ColumnDef<NormalizedRow>[] = [
   {
     accessorKey: "prazoMeses",
     header: "Prazo (em meses)",
-  },
-  {
-    accessorKey: "vencimento",
-    header: "Vencimento",
-    cell: ({ getValue }) => {
-      const value = getValue<Date>();
-
-      return formatDate(value);
-    },
   },
   {
     accessorKey: "valorTotalContrato",

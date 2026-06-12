@@ -404,7 +404,7 @@ export const FIELDS: Record<string, FieldConfig> = {
   },
 
   alterador: {
-    label: "Responsável pelo preenchimento",
+    label: "Responsável pelo Preenchimento",
     placeholder: "Nome e sobrenome do responsável pelo preenchimento",
     type: "text",
     required: true,
