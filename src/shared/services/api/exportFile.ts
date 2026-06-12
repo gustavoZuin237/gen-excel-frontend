@@ -1,25 +1,22 @@
-import { API_URL } from "./index";
+import { VITE_API_URL } from "./index";
 import type { NormalizedRow } from "@shared/types/rowFormats.js";
 
 export async function exportSpreadsheet(
   fileName: string,
   rows: NormalizedRow[]
 ) {
-  const flattenedRows = rows.flat()
+  const flattenedRows = rows.flat();
 
-  const response = await fetch(
-    `${API_URL}/spreadsheets/export`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        fileName,
-        rows: flattenedRows,
-      }),
-    }
-  );
+  const response = await fetch(`${VITE_API_URL}/spreadsheets/export`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      fileName,
+      rows: flattenedRows,
+    }),
+  });
 
   if (!response.ok) {
     throw new Error("Failed to export spreadsheet");
