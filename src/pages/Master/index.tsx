@@ -1,0 +1,101 @@
+import { useRef, useState } from "react";
+
+import * as s from "./styles";
+
+import { importMultipleSpreadsheets } from "@shared/services/api/importFile";
+import { exportSpreadsheet } from "@shared/services/api/exportFile";
+
+import type { NormalizedRow } from "@shared/types/rowFormats";
+
+import { Button } from "@components/Button";
+import { PageContainer } from "@components/PageContainer";
+import { MultipleFileInput } from "@components/MultipleFileInput";
+
+import {
+  FileNameDialog,
+  type FileNameDialogHandle,
+} from "@components/FileNameDialog";
+
+import toast from "react-hot-toast";
+
+export function Master() {
+  const [mergedSheet, setMergedSheet] = useState<NormalizedRow[]>([]);
+
+  const [inputResetKey, setInputResetKey] = useState(0);
+  // * inputResetKey resets the labels in the input component when changed
+
+  const dialogRef = useRef<FileNameDialogHandle>(null);
+
+  async function handleMultipleFileUpload(files: FileList) {
+    try {
+      const results = await importMultipleSpreadsheets(files);
+
+      const resultsRows = results.map((result) => {
+        return result.rows;
+      });
+
+      setMergedSheet(resultsRows);
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Falha na importação do arquivo"
+      );
+    }
+  }
+
+  function handleExport(fileName: string) {
+    exportSpreadsheet(fileName, mergedSheet);
+
+    setMergedSheet([]);
+
+    toast.success("Planilha exportada com sucesso!");
+
+    setInputResetKey((prev) => prev + 1);
+  }
+
+  function handleCancel() {
+    setMergedSheet([]);
+
+    setInputResetKey((prev) => prev + 1);
+
+    toast.error("Operação cancelada");
+  }
+
+  return (
+    <PageContainer title="Registro Mestre">
+      <MultipleFileInput
+        key={inputResetKey}
+        onChange={handleMultipleFileUpload}
+      />
+
+      <s.ButtonContainer>
+        <Button
+          variant="success"
+          disabled={mergedSheet.length === 0}
+          onClick={() => {
+            dialogRef.current?.showModal();
+          }}
+        >
+          Gerar planilha mestre
+        </Button>
+
+        <Button
+          disabled={mergedSheet.length === 0}
+          variant="danger"
+          onClick={handleCancel}
+        >
+          Limpar
+        </Button>
+      </s.ButtonContainer>
+
+      <FileNameDialog
+        ref={dialogRef}
+        onConfirm={handleExport}
+        onCancel={() => {
+          dialogRef.current?.close();
+        }}
+      />
+    </PageContainer>
+  );
+}
