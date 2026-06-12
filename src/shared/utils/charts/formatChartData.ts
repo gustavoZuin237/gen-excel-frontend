@@ -3,6 +3,7 @@ import type { NormalizedRow } from "@shared/types/rowFormats";
 import { parseDate } from "@shared/utils/dates/parseDate";
 import { parseNumber } from "@shared/utils/parsing/parseNumber";
 import { parseCurrency } from "@shared/utils/currency/parseCurrency";
+import { formatDate } from "@shared/utils/dates/formatDate";
 
 export function formatChartData(rows: NormalizedRow[]) {
   const chartData = rows.map((row) => ({
@@ -23,9 +24,9 @@ export function formatChartData(rows: NormalizedRow[]) {
 
     prazoMeses: parseNumber(row.prazoMeses),
 
-    dataInicio: parseDate(row.dataInicio),
-    dataTermino: parseDate(row.dataVencimento),
-    dataPagamento: parseDate(row.dataPagamento),
+    dataInicio: formatDate(parseDate(row.dataInicio)),
+    dataTermino: formatDate(parseDate(row.dataVencimento)),
+    dataPagamento: formatDate(parseDate(row.dataPagamento)),
   }));
 
   return chartData;
