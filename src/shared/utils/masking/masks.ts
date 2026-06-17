@@ -62,14 +62,14 @@ export const masks: Record<MaskType, MaskFunction> = {
     const numbers = value.replace(/\D/g, "").slice(0, 25);
 
     const parts = [
-    numbers.slice(0, 6), // Slices after 6 digits, xxxxxx - 6 digits
-    numbers.slice(6, 10), // Slices after 10 digits, xxxx - 4 digits
-    numbers.slice(10, 12), // Slices after 12 digits, xx - 2 digits
-    numbers.slice(12, 14), // Slices after 14 digits, xx - 2 digits
-    numbers.slice(14, 17), // Slices after 17 digits, xxx - 3 digits
-    numbers.slice(17, 21), // Slices after 21 digits, xxxx - 4 digits
-    numbers.slice(21, 25), // Slices after 25 digits, xxxx - 4 digits
-  ].filter(Boolean);
+      numbers.slice(0, 6), // Slices after 6 digits, xxxxxx - 6 digits
+      numbers.slice(6, 10), // Slices after 10 digits, xxxx - 4 digits
+      numbers.slice(10, 12), // Slices after 12 digits, xx - 2 digits
+      numbers.slice(12, 14), // Slices after 14 digits, xx - 2 digits
+      numbers.slice(14, 17), // Slices after 17 digits, xxx - 3 digits
+      numbers.slice(17, 21), // Slices after 21 digits, xxxx - 4 digits
+      numbers.slice(21, 25), // Slices after 25 digits, xxxx - 4 digits
+    ].filter(Boolean);
 
     // After joining each part with a ".", the end result is xxxxxx.xxxx.xx.xx.xxx.xxxx.xxxx
     return parts.join(".");
