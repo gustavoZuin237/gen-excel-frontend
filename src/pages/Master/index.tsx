@@ -35,17 +35,20 @@ export function Master() {
       });
 
       setMergedSheet(resultsRows);
-    } catch (error) {
-      toast.error(
-        error instanceof Error
-          ? error.message
-          : "Falha na importação do arquivo"
-      );
+    } catch {
+      toast.error("Falha na importação dos arquivos");
+      setMergedSheet([]);
+      return;
     }
   }
 
   function handleExport(fileName: string) {
-    exportSpreadsheet(fileName, mergedSheet);
+    try {
+      exportSpreadsheet(fileName, mergedSheet);
+    } catch {
+      toast.error("Falha na exportação dos arquivos");
+      return;
+    }
 
     setMergedSheet([]);
 
@@ -80,11 +83,7 @@ export function Master() {
           Gerar planilha mestre
         </Button>
 
-        <Button
-          disabled={mergedSheet.length === 0}
-          variant="danger"
-          onClick={handleCancel}
-        >
+        <Button variant="danger" onClick={handleCancel}>
           Limpar
         </Button>
       </s.ButtonContainer>

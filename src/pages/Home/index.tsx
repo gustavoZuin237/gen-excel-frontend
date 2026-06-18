@@ -53,9 +53,8 @@ export function Home() {
 
       pendingMergedRowsRef.current = mergedRows;
       dialogRef.current?.showModal();
-    } catch (error) {
-      console.error(error);
-      toast.error("Erro ao atualizar planilha.");
+    } catch {
+      toast.error("Falha na importação do arquivo");
     }
 
     event.target.value = "";
@@ -70,16 +69,27 @@ export function Home() {
     dialogRef.current?.showModal();
   }
 
-  function handleExport(fileName: string) {
+  async function handleExport(fileName: string) {
     if (pendingMergedRowsRef.current) {
-      exportSpreadsheet(fileName, pendingMergedRowsRef.current);
+      try {
+        await exportSpreadsheet(fileName, pendingMergedRowsRef.current);
+      } catch {
+        toast.error("Falha na exportação do arquivo");
+        return;
+      }
+
       pendingMergedRowsRef.current = null;
       setRows([]);
     } else {
-      exportSpreadsheet(fileName, rows);
+      try {
+        await exportSpreadsheet(fileName, rows);
+      } catch {
+        toast.error("Falha na exportação do arquivo");
+        return;
+      }
+
       setRows([]);
     }
-    toast.success("Planilha exportada com sucesso!");
   }
 
   function save() {

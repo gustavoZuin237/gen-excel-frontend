@@ -69,12 +69,8 @@ export function Search() {
       const results = await importSpreadsheet(file);
 
       setImportedSheet(results.rows);
-    } catch (error) {
-      toast.error(
-        error instanceof Error
-          ? error.message
-          : "Falha na importação do arquivo"
-      );
+    } catch {
+      toast.error("Falha na importação do arquivo");
     }
   }
 

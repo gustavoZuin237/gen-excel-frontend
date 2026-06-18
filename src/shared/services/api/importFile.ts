@@ -1,24 +1,40 @@
 import { VITE_API_URL } from "./index";
 
 export async function importSpreadsheet(file: File) {
+  if (!file) {
+    throw new Error("Nenhum arquivo para importar");
+  }
+
   const formData = new FormData();
 
   formData.append("file", file);
 
-  const response = await fetch(`${VITE_API_URL}/spreadsheets/import`, {
-    method: "POST",
-    body: formData,
-  });
+  try {
+    const response = await fetch(`${VITE_API_URL}/spreadsheets/import`, {
+      method: "POST",
+      body: formData,
+    });
 
-  return response.json();
+    return response.json();
+  } catch {
+    throw new Error("Falha na importação");
+  }
 }
 
 export async function importMultipleSpreadsheets(files: FileList) {
+  if (!files) {
+    throw new Error("Nenhum arquivo para importar");
+  }
+
   const filesArray = Array.from(files);
 
-  const results = await Promise.all(
-    filesArray.map((file) => importSpreadsheet(file))
-  );
+  try {
+    const results = await Promise.all(
+      filesArray.map((file) => importSpreadsheet(file))
+    );
 
-  return results;
+    return results;
+  } catch {
+    throw new Error("Falha na importação");
+  }
 }

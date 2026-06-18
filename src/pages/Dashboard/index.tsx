@@ -24,17 +24,16 @@ export function Dashboard() {
     try {
       if (!file) return;
 
-      const results = await importSpreadsheet(file);
+      let results;
+
+      results = await importSpreadsheet(file);
 
       const chartData = formatChartData(results.rows);
 
       setImportedSheet(chartData);
-    } catch (error) {
-      toast.error(
-        error instanceof Error
-          ? error.message
-          : "Falha na importação do arquivo"
-      );
+    } catch {
+      toast.error("Falha na importação do arquivo");
+      return;
     }
   }
 
