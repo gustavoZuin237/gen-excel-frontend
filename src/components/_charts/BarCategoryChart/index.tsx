@@ -6,7 +6,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid } from "recharts";
 
 import { defaultTheme, darkTheme } from "@styles/themes";
 
-import { useThemeContext } from "@shared/hooks/useThemeContext";
+import { useThemeContext } from "../../../hooks/useThemeContext";
 
 interface Props {
   data: NormalizedRow[];

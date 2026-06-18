@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import * as s from "./styles";
 
-import { importSpreadsheet } from "@shared/services/api/importFile";
+import { importSpreadsheet } from "../../services/api/importFile";
 
 import { FileInput } from "@components/FileInput";
 import { Input } from "@components/Input";
@@ -14,7 +14,7 @@ import { flexRender } from "@tanstack/react-table";
 
 import toast from "react-hot-toast";
 
-import { useSearch } from "@shared/hooks/useSearch";
+import { useSearch } from "../../hooks/useSearch";
 
 export function Search() {
   const [importedSheet, setImportedSheet] = useState<NormalizedRow[]>([]);

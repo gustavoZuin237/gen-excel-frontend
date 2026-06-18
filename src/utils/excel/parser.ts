@@ -5,9 +5,9 @@ import type {
   RawSpreadsheetRow,
 } from "@shared/types/rowFormats.js";
 
-import { validateColumns } from "@shared/utils/excel/schemaValidator";
+import { validateColumns } from "./schemaValidator";
 
-import { normalizeRow } from "@shared/utils/excel/normalizer.js";
+import { normalizeRow } from "./normalizer.js";
 
 export async function parseSpreadsheet(
   buffer: Buffer

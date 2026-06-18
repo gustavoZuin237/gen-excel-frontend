@@ -2,8 +2,8 @@ import { useRef } from "react";
 
 import { type FileNameDialogHandle } from "@components/FileNameDialog";
 
-import { exportSpreadsheet } from "@shared/services/api/exportFile";
-import { importSpreadsheet } from "@shared/services/api/importFile";
+import { exportSpreadsheet } from "../services/api/exportFile";
+import { importSpreadsheet } from "../services/api/importFile";
 
 import type { NormalizedRow } from "@shared/types/rowFormats";
 

@@ -1,6 +1,6 @@
 import * as s from "./styles";
 
-import type { ChartPresetOption } from "@shared/data/chartPresets";
+import type { ChartPresetOption } from "../../data/chartPresets";
 import type { NormalizedRow } from "@shared/types/rowFormats";
 
 import { BarCategoryChart } from "@components/_charts/BarCategoryChart";

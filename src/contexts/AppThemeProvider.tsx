@@ -1,6 +1,6 @@
 import { ThemeProvider } from "styled-components";
 import { darkTheme, defaultTheme } from "@styles/themes";
-import { useThemeContext } from "@shared/hooks/useThemeContext";
+import { useThemeContext } from "../hooks/useThemeContext";
 
 export function AppThemeProvider({ children }: { children: React.ReactNode }) {
   const { themeMode } = useThemeContext();

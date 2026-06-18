@@ -1,4 +1,4 @@
-import type { FormValues } from "@shared/data/fields";
+import type { FormValues } from "../../data/fields";
 
 import type { NormalizedRow } from "@shared/types/rowFormats";
 

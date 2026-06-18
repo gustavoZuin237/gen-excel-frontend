@@ -9,7 +9,7 @@ import {
   SunIcon,
 } from "@phosphor-icons/react";
 
-import { useThemeContext } from "@shared/hooks/useThemeContext";
+import { useThemeContext } from "../../hooks/useThemeContext";
 
 import { Button } from "@components/Button";
 

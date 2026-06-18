@@ -2,8 +2,8 @@ import { useState } from "react";
 
 import * as s from "./styles";
 
-import { importSpreadsheet } from "@shared/services/api/importFile";
-import { formatChartData } from "@shared/utils/charts/formatChartData";
+import { importSpreadsheet } from "../../services/api/importFile";
+import { formatChartData } from "../../utils/charts/formatChartData";
 
 import { FileInput } from "@components/FileInput";
 import { ChartRenderer } from "@components/ChartRenderer";
@@ -12,7 +12,7 @@ import { PageContainer } from "@components/PageContainer";
 
 import type { NormalizedRow } from "@shared/types/rowFormats";
 
-import { chartPresetOptionList } from "@shared/data/chartPresets";
+import { chartPresetOptionList } from "../../data/chartPresets";
 
 import toast from "react-hot-toast";
 

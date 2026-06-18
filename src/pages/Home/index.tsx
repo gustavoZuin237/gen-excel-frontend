@@ -7,10 +7,10 @@ import { Button } from "@components/Button";
 import { PageContainer } from "@components/PageContainer";
 import { FileNameDialog } from "@components/FileNameDialog";
 
-import { useContractForm } from "@shared/hooks/useContractForm";
-import { useFileExport } from "@shared/hooks/useFileExport";
+import { useContractForm } from "../../hooks/useContractForm";
+import { useFileExport } from "../../hooks/useFileExport";
 
-import { mockForm } from "@shared/utils/form/mockForm";
+import { mockForm } from "../../utils/form/mockForm";
 
 export function Home() {
   const [debugIterator, setDebugIterator] = useState(1);

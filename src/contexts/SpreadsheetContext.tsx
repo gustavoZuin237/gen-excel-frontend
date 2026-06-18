@@ -1,6 +1,6 @@
 import { createContext, useMemo, useState, type ReactNode } from "react";
 
-import { normalizeRow } from "@shared/utils/excel/normalizer";
+import { normalizeRow } from "../utils/excel/normalizer";
 
 import type { NormalizedRow } from "@shared/types/rowFormats";
 

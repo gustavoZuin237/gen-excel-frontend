@@ -30,6 +30,7 @@
       "@components/*": ["./src/components/*"],
       "@pages/*": ["./src/pages/*"],
       "@contexts/*": ["./src/contexts/*"],
+      "@types/*": ["./src/types/*"],
       "@shared/*": ["./src/shared/*"]
     }
   },

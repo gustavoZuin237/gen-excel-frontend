@@ -9,7 +9,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import { columns } from "@shared/data/tableColumns";
+import { columns } from "../data/tableColumns";
 
 export function useSearch(importedSheet: NormalizedRow[]) {
   const [globalFilter, setGlobalFilter] = useState("");

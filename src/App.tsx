@@ -10,7 +10,7 @@ import { Toaster } from "react-hot-toast";
 
 import { SpreadsheetProvider } from "@contexts/SpreadsheetContext";
 
-import { useThemeContext } from "@shared/hooks/useThemeContext";
+import { useThemeContext } from "./hooks/useThemeContext";
 
 export function App() {
   const { themeMode } = useThemeContext();

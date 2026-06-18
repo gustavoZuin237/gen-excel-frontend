@@ -2,8 +2,8 @@ import * as s from "./styles";
 import { type Control, type FieldErrors, Controller } from "react-hook-form";
 
 import { Input } from "@components/Input";
-import type { FieldConfig } from "@shared/types/fieldConfiguration";
-import type { FormValues } from "@shared/data/fields";
+import type { FieldConfig } from "../../types/fieldConfiguration";
+import type { FormValues } from "../../data/fields";
 
 interface Props {
   fieldName: keyof FormValues;

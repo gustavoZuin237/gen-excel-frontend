@@ -8,7 +8,7 @@ import { formatCurrency } from "@shared/utils/currency/formatCurrency";
 
 import { defaultTheme, darkTheme } from "@styles/themes";
 
-import { useThemeContext } from "@shared/hooks/useThemeContext";
+import { useThemeContext } from "../../../hooks/useThemeContext";
 interface Props {
   data: NormalizedRow[];
 }

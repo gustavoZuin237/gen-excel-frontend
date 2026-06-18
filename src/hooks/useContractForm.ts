@@ -2,11 +2,11 @@ import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState, useMemo } from "react";
 
-import { FIELDS } from "@shared/data/fields";
-import { formSchema, type FormValues } from "@shared/data/fields";
+import { FIELDS } from "../data/fields";
+import { formSchema, type FormValues } from "../data/fields";
 
-import { masks } from "@shared/utils/masking/masks";
-import { normalizeFormData } from "@shared/utils/form/normalizeFormData";
+import { masks } from "../utils/masking/masks";
+import { normalizeFormData } from "../utils/form/normalizeFormData";
 import { parseCurrency } from "@shared/utils/currency/parseCurrency";
 
 import type { NormalizedRow } from "@shared/types/rowFormats";

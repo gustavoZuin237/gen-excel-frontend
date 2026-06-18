@@ -2,8 +2,8 @@ import { useRef, useState } from "react";
 
 import * as s from "./styles";
 
-import { importMultipleSpreadsheets } from "@shared/services/api/importFile";
-import { exportSpreadsheet } from "@shared/services/api/exportFile";
+import { importMultipleSpreadsheets } from "../../services/api/importFile";
+import { exportSpreadsheet } from "../../services/api/exportFile";
 
 import type { NormalizedRow } from "@shared/types/rowFormats";
 

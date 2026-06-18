@@ -6,7 +6,7 @@ import {
   requiredString,
   optionalString,
   sanitize,
-} from "@shared/types/fieldConfiguration";
+} from "../types/fieldConfiguration";
 
 export const FIELDS: Record<string, FieldConfig> = {
   secretaria: {
