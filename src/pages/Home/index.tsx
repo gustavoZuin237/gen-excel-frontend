@@ -1,23 +1,14 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 import * as s from "./styles";
 
 import { FormFields } from "@components/FormFields/FormFields";
 import { Button } from "@components/Button";
 import { PageContainer } from "@components/PageContainer";
-import {
-  FileNameDialog,
-  type FileNameDialogHandle,
-} from "@components/FileNameDialog";
+import { FileNameDialog } from "@components/FileNameDialog";
 
 import { useContractForm } from "@shared/hooks/useContractForm";
-
-import { exportSpreadsheet } from "@shared/services/api/exportFile";
-import { importSpreadsheet } from "@shared/services/api/importFile";
-
-import type { NormalizedRow } from "@shared/types/rowFormats";
-
-import toast from "react-hot-toast";
+import { useFileExport } from "@shared/hooks/useFileExport";
 
 import { mockForm } from "@shared/utils/form/mockForm";
 
@@ -37,69 +28,14 @@ export function Home() {
     onValidSubmit,
   } = useContractForm();
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const dialogRef = useRef<FileNameDialogHandle>(null);
-
-  const pendingMergedRowsRef = useRef<NormalizedRow[] | null>(null);
-
-  async function handleAppendFile(event: React.ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    try {
-      const existingData = await importSpreadsheet(file);
-
-      const mergedRows = [...existingData.rows, ...rows];
-
-      pendingMergedRowsRef.current = mergedRows;
-      dialogRef.current?.showModal();
-    } catch {
-      toast.error("Falha na importação do arquivo");
-    }
-
-    event.target.value = "";
-  }
-
-  function handleCreateNewFile() {
-    if (!rows.length) {
-      toast.error("Nenhuma linha para exportar");
-      return;
-    }
-
-    dialogRef.current?.showModal();
-  }
-
-  async function handleExport(fileName: string) {
-    if (pendingMergedRowsRef.current) {
-      try {
-        await exportSpreadsheet(fileName, pendingMergedRowsRef.current);
-      } catch {
-        toast.error("Falha na exportação do arquivo");
-        return;
-      }
-
-      pendingMergedRowsRef.current = null;
-      setRows([]);
-    } else {
-      try {
-        await exportSpreadsheet(fileName, rows);
-      } catch {
-        toast.error("Falha na exportação do arquivo");
-        return;
-      }
-
-      setRows([]);
-    }
-  }
-
-  function save() {
-    if (!rows.length) {
-      toast.error("Nenhuma linha para exportar");
-      return;
-    }
-
-    fileInputRef.current?.click();
-  }
+  const {
+    fileInputRef,
+    dialogRef,
+    handleAppendFile,
+    handleCreateNewFile,
+    handleExport,
+    save,
+  } = useFileExport(rows, setRows);
 
   function debugForm() {
     setRows([...rows, mockForm(debugIterator)]);
