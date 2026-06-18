@@ -19,7 +19,7 @@ export function normalizeFormData(data: FormValues) {
     codigoAplicacao: data.codigoAplicacao,
     quantidadeProduto: data.quantidadeProduto,
     dataInicio: data.dataInicio,
-    dataVencimento: data.dataTermino,
+    dataVencimento: data.dataVencimento,
     dataPagamento: data.dataPagamento,
     dataExportacao: data.dataExportacao,
     prazoMeses: Number(data.prazoMeses),

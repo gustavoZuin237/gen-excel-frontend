@@ -5,5 +5,7 @@ export function parseDate(value: unknown): Date {
 
   if (!d || !m || !y) return new Date(0, 0, 0);
 
-  return new Date(Number(y), Number(m) - 1, Number(d));
+  const parsedDate = new Date(Number(y), Number(m) - 1, Number(d));
+
+  return parsedDate;
 }

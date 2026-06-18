@@ -11,9 +11,9 @@ export function mockForm(iterator: number) {
     fonte: `${iterator < 10 ? iterator * 10 : iterator}`,
     codigoAplicacao: "1234567",
     quantidadeProduto: "1 Produto de Teste",
-    dataInicio: "10/10/21",
-    dataVencimento: "10/10/21",
-    dataPagamento: "10/10/21",
+    dataInicio: "11/01/11",
+    dataVencimento: "22/02/22",
+    dataPagamento: "33/03/33",
     prazoMeses: 12,
     valorTotalContrato: 1000 * iterator,
     valorMensal: 1000,
@@ -31,7 +31,6 @@ export function mockForm(iterator: number) {
     valor2027: 1000,
     valor2028: 1000,
     valor2029: 1000,
-    dataExportacao: "10/10/21",
   };
 
   MOCK_FORM.valorTotalAnual =
