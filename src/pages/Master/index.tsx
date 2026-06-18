@@ -42,9 +42,9 @@ export function Master() {
     }
   }
 
-  function handleExport(fileName: string) {
+  async function handleExport(fileName: string) {
     try {
-      exportSpreadsheet(fileName, mergedSheet);
+      await exportSpreadsheet(fileName, mergedSheet);
     } catch {
       toast.error("Falha na exportação dos arquivos");
       return;

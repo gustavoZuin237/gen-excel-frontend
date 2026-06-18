@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 
 import * as s from "./styles";
 
@@ -10,57 +10,24 @@ import { PageContainer } from "@components/PageContainer";
 
 import type { NormalizedRow } from "@shared/types/rowFormats";
 
-import {
-  getCoreRowModel,
-  getFilteredRowModel,
-  getSortedRowModel,
-  useReactTable,
-  flexRender,
-} from "@tanstack/react-table";
-
-import { columns } from "@shared/data/tableColumns";
+import { flexRender } from "@tanstack/react-table";
 
 import toast from "react-hot-toast";
+
+import { useSearch } from "@shared/hooks/useSearch";
 
 export function Search() {
   const [importedSheet, setImportedSheet] = useState<NormalizedRow[]>([]);
 
-  const [globalFilter, setGlobalFilter] = useState("");
-
-  const [fornecedorFilter, setFornecedorFilter] = useState("");
-  const [secretariaFilter, setSecretariaFilter] = useState("");
-
-  const memoData = useMemo(() => {
-    return importedSheet.filter((row) => {
-      const matchesGlobal =
-        globalFilter === "" ||
-        Object.values(row).some((value) =>
-          String(value).toLowerCase().includes(globalFilter.toLowerCase())
-        );
-
-      const matchesSecretaria =
-        secretariaFilter === "" ||
-        row.secretaria.toLowerCase().includes(secretariaFilter.toLowerCase());
-
-      const matchesFornecedor =
-        fornecedorFilter === "" ||
-        row.fornecedor.toLowerCase().includes(fornecedorFilter.toLowerCase());
-
-      return matchesGlobal && matchesFornecedor && matchesSecretaria;
-    });
-  }, [importedSheet, globalFilter, secretariaFilter, fornecedorFilter]);
-
-  // eslint-disable-next-line react-hooks/incompatible-library
-  const table = useReactTable({
-    data: memoData,
-    columns,
-    state: {
-      globalFilter,
-    },
-    getCoreRowModel: getCoreRowModel(),
-    getFilteredRowModel: getFilteredRowModel(),
-    getSortedRowModel: getSortedRowModel(),
-  });
+  const {
+    globalFilter,
+    setGlobalFilter,
+    fornecedorFilter,
+    setFornecedorFilter,
+    secretariaFilter,
+    setSecretariaFilter,
+    table,
+  } = useSearch(importedSheet);
 
   async function handleFileUpload(file: File) {
     try {
