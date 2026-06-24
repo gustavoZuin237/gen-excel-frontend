@@ -1,6 +1,5 @@
 // ? The structure for columns needs to include "accessorKey" for the table to work
 import { formatTableCurrency } from "../utils/table/formatTableData";
-import { formatDate } from "@shared/utils/dates/formatDate";
 
 import type { ColumnDef } from "@tanstack/react-table";
 
@@ -57,7 +56,7 @@ export const columns: ColumnDef<NormalizedRow>[] = [
     cell: ({ getValue }) => {
       const value = getValue<Date>();
 
-      return formatDate(value);
+      return value;
     },
   },
   {
@@ -66,7 +65,7 @@ export const columns: ColumnDef<NormalizedRow>[] = [
     cell: ({ getValue }) => {
       const value = getValue<Date>();
 
-      return formatDate(value);
+      return value;
     },
   },
   {
@@ -144,7 +143,7 @@ export const columns: ColumnDef<NormalizedRow>[] = [
     cell: ({ getValue }) => {
       const value = getValue<Date>();
 
-      return formatDate(value);
+      return value;
     },
   },
   {
@@ -161,7 +160,7 @@ export const columns: ColumnDef<NormalizedRow>[] = [
     cell: ({ getValue }) => {
       const value = getValue<Date>();
 
-      return formatDate(value);
+      return value;
     },
   },
   {
